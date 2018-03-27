@@ -1,5 +1,5 @@
 /**
- * Copyright © 2017 DELL Inc. or its subsidiaries.  All Rights Reserved.
+ * Copyright Â© 2017 DELL Inc. or its subsidiaries.  All Rights Reserved.
  */
 package com.dell.isg.smi.adapter.server.inventory;
 
@@ -217,5 +217,19 @@ public class InventoryAdapterImpl implements IInventoryAdapter {
         }
         return response;
    }
+
+   @Override
+   public Object collectSwitchConnectionsView(WsmanCredentials wsmanCredentials) throws Exception {
+        logger.info("collecting switch views for {} ", wsmanCredentials.getAddress());
+        Object response = null;
+        IWSManClient wsmanClient = null;
+        try{
+            wsmanClient = WSManClientFactory.getClient(wsmanCredentials.getAddress(), wsmanCredentials.getUserName(), wsmanCredentials.getPassword());
+            response = wsmanClient.execute(new DefaultEnumerate<Object>(WSManClassEnum.DCIM_SwitchConnectionView));
+        } finally {
+            wsmanClient.close(); 
+        }
+        return response;
+    }
    
 }
