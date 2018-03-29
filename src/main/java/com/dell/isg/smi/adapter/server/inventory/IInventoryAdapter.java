@@ -1,5 +1,5 @@
 /**
- * Copyright © 2017 DELL Inc. or its subsidiaries.  All Rights Reserved.
+ * Copyright Â© 2017 DELL Inc. or its subsidiaries.  All Rights Reserved.
  */
 package com.dell.isg.smi.adapter.server.inventory;
 
@@ -36,4 +36,6 @@ public interface IInventoryAdapter {
 	public Object collectBoot(WsmanCredentials credentials) throws Exception;
 
     public Object collect(WsmanCredentials wsmanCredentials, String dcimType) throws Exception;
+
+	public Object collectSwitchConnectionsView(WsmanCredentials credentials) throws Exception;
 }
